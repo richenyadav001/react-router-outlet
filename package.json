@@ -26,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/richenyadav001/react-router-outlet/issues"
   },
-  "homepage": "https://github.com/richenyadav001/react-router-outlet#readme"
+  "homepage": "https://github.com/richenyadav001/react-router-outlet#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  }
 }
