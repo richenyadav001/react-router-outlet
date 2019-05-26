@@ -1,0 +1,30 @@
+{
+  "name": "react-router-outlet",
+  "version": "1.0.0",
+  "description": "A simple router outlet tag for react router. Which make easy coding for routing based app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richenyadav001/react-router-outlet.git"
+  },
+  "keywords": [
+    "router-outlet",
+    "router-outlet",
+    "for",
+    "angular",
+    "router",
+    "for",
+    "react",
+    "reactjs",
+    "route"
+  ],
+  "author": "richen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richenyadav001/react-router-outlet/issues"
+  },
+  "homepage": "https://github.com/richenyadav001/react-router-outlet#readme"
+}
