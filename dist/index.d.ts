@@ -28,7 +28,7 @@ declare class RouterUtility {
      * getRouterOutlet
      * @param data : component props
      */
-    getRouterOutlet(data: object): JSX.Element | JSX.Element[];
+    getRouterOutlet(data: any): JSX.Element | JSX.Element[];
     private resolveRoutes;
     /**
      * getPathArray

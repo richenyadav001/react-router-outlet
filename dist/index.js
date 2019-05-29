@@ -16,7 +16,7 @@ var RouterUtility = /** @class */ (function () {
         this.config = {
             ejectHistory: true,
             enableTracing: false,
-            useHash: true
+            useHash: true,
         };
     }
     RouterUtility.prototype.startListeningHistory = function () {
@@ -24,7 +24,7 @@ var RouterUtility = /** @class */ (function () {
         this.stopListening = this.historyLocation.listen(function (location, action) {
             var params = {
                 action: action,
-                pathname: location.pathname
+                pathname: location.pathname,
             };
             _this.triggerCustomEvent(params);
         });
@@ -74,13 +74,11 @@ var RouterUtility = /** @class */ (function () {
         var _this = this;
         var element;
         if (this.rootLoaded) {
-            element = this.childRoute.map(function (item, id) { return (<react_router_dom_1.Route key={id} path={_this.setListeningPath(item.path)} render={function (props) { return _this.loadComponent(props, item, data); }}/>); });
+            element = this.childRoute.map(function (item, id) { return (React.createElement(react_router_dom_1.Route, { key: id, path: _this.setListeningPath(item.path), render: function (props) { return _this.loadComponent(props, item, data); } })); });
         }
         else {
             this.rootLoaded = true;
-            element = <react_router_dom_1.HashRouter hashType='slash' getUserConfirmation={this.getConfirmation}>
-				{this.rootRoute.map(function (item, id) { return (<react_router_dom_1.Route key={id} path={item.path} render={function (props) { return _this.loadComponent(props, item, data); }}/>); })}
-			</react_router_dom_1.HashRouter>;
+            element = (React.createElement(react_router_dom_1.HashRouter, { hashType: "slash", getUserConfirmation: this.getConfirmation }, this.rootRoute.map(function (item, id) { return (React.createElement(react_router_dom_1.Route, { key: id, path: item.path, render: function (props) { return _this.loadComponent(props, item, data); } })); })));
         }
         return element;
     };
@@ -136,9 +134,9 @@ var RouterUtility = /** @class */ (function () {
         return this.currentPath;
     };
     /*
-    * addSlashToPath
-    * Prepend '/' to paths
-    */
+     * addSlashToPath
+     * Prepend '/' to paths
+     */
     RouterUtility.prototype.addSlashToPath = function (path) {
         if (path.indexOf('/') !== -1) {
             // Clean any previous slash
@@ -147,25 +145,25 @@ var RouterUtility = /** @class */ (function () {
         return '/' + path;
     };
     /*
-    * setCurrentPath
-    * This method push new loaded path to route tree
-    */
+     * setCurrentPath
+     * This method push new loaded path to route tree
+     */
     RouterUtility.prototype.setCurrentPath = function (rPath) {
         this.currentPath = rPath;
         // console.log('Loaded Path', this.getCurrentPath());
     };
     /*
-    * getConfirmation
-    * @TODO Not working have to find out why?
-    */
+     * getConfirmation
+     * @TODO Not working have to find out why?
+     */
     RouterUtility.prototype.getConfirmation = function (message, callback) {
         var allowTransition = window.confirm(message);
         callback(allowTransition);
     };
     /*
-    * setListeningPath
-    * This method sets path for listening upcomming paths
-    */
+     * setListeningPath
+     * This method sets path for listening upcomming paths
+     */
     RouterUtility.prototype.setListeningPath = function (path) {
         // console.log('Listening paths', path);
         this.listeningPaths.push(path);
@@ -184,19 +182,19 @@ var RouterUtility = /** @class */ (function () {
             }
         }
         // HistoryLocation.triggerCustomEvent(props.history);
-        return <item.component data={params}/>;
+        return React.createElement(item.component, { data: params });
     };
     /*
-    * setHistoryLocation
-    * History Event and actions
-    */
+     * setHistoryLocation
+     * History Event and actions
+     */
     RouterUtility.prototype.setHistoryLocation = function (loc) {
         this.historyLocation = loc;
     };
     /*
-    * triggerCustomEvent
-    * History Event and actions
-    */
+     * triggerCustomEvent
+     * History Event and actions
+     */
     RouterUtility.prototype.triggerCustomEvent = function (params) {
         this.historyEvents = new CustomEvent('historyaction', { detail: params });
         window.dispatchEvent(this.historyEvents);
