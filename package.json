@@ -4,7 +4,7 @@
   "description": "A simple router outlet tag for react router. Which make easy coding for routing based app.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "babel ./src -d ./dist",
     "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,13 +31,11 @@
   },
   "homepage": "https://github.com/richenyadav001/react-router-outlet#readme",
   "dependencies": {
-    "@types/react": "^16.8.18",
-    "@types/react-router-dom": "^4.3.3"
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.17.1",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5"
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
   }
 }

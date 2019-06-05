@@ -21,7 +21,7 @@ class RouterUtility {
       useHash: true,
       ejectHistory: true,
       enableTracing: false
-    };
+    }
   }
 
   forRoot(routes, config) {
@@ -56,14 +56,18 @@ class RouterUtility {
     console.log('CurrentRoutes', this.currentRoutes);
     let element;
     if (this.rootLoaded) {
-      element = this.childRoute.map((item, id) => React.createElement(Route, { key: id, path: this.setListeningPath(item.path), render: props => this.loadComponent(props, item, data) }));
+      element = this.childRoute.map((item, id) => (
+        <Route key={id} path={this.setListeningPath(item.path)} render={(props) => this.loadComponent(props, item, data)} />
+      ));
     } else {
       this.rootLoaded = true;
-      element = React.createElement(
-        Router,
-        { hashType: 'slash', getUserConfirmation: this.getConfirmation },
-        this.rootRoute.map((item, id) => React.createElement(Route, { key: id, path: item.path, render: props => this.loadComponent(props, item, data) }))
-      );
+      element = <Router hashType='slash' getUserConfirmation={this.getConfirmation}>
+        {
+          this.rootRoute.map((item, id) => (
+            <Route key={id} path={item.path} render={(props) => this.loadComponent(props, item, data)} />
+          ))
+        }
+      </Router>;
     }
     return element;
   }
@@ -123,7 +127,7 @@ class RouterUtility {
   getPathArray() {
     let cPath = this.getCurrentPath().split('/');
     cPath.shift();
-    console.log(cPath);
+    console.log(cPath)
     return cPath;
   }
 
@@ -135,7 +139,7 @@ class RouterUtility {
   }
 
   setRootRoute(route) {
-    this.rootRoute = route.map(data => {
+    this.rootRoute = route.map((data) => {
       data.path = this.addSlashToPath(data.path);
       return data;
     });
@@ -164,7 +168,7 @@ class RouterUtility {
       }
     }
     //HistoryLocation.triggerCustomEvent(props.history);
-    return React.createElement(item.component, { data: params });
+    return <item.component data={params} />;
   }
 
   /* History Event and actions */
@@ -177,7 +181,7 @@ class RouterUtility {
       let params = {
         action: action,
         pathname: location.pathname
-      };
+      }
       this.triggerCustomEvent(params);
     });
   }
@@ -214,4 +218,4 @@ class RouterUtility {
 
 const RU = new RouterUtility();
 
-export { RU };
+export { RU }
