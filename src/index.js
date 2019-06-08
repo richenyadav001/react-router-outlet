@@ -216,6 +216,4 @@ class RouterUtility {
   }
 }
 
-const RU = new RouterUtility();
-
-export { RU }
+export default new RouterUtility();
